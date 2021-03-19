@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Error page">
+    <meta name="description" content="Welcome to Cygnus's Market">
     <meta name="author" content="Cygnus Market INC">
     <link rel="icon" href="../../favicon.ico"/>
 
@@ -15,16 +15,23 @@
     <link href="../bootstrap.min.css" th:href="@{bootstrap.min.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../cygnusBrand.png">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+        </ul>
+    </div>
+</nav>
 <div class="container" style="padding-top: 5%; max-width: 60%">
     <div class="jumbotron">
         <!--Usage of models we wrote in WepAppController th:text="'Welcome to basic Bootstrap with Spring Boot created by ' + ${username} -->
-        <h3 class="text-center" th:text="Error"></h3>
-        <h2 class="text-center" th:text="${error}"></h2>
-        <h1 class="text-center" th:text="${status}"></h1>
-        <p class="text-center" th:text="${timestamp}"></p>
-        <p class="text-center">
-            <a class="btn btn-lg btn-primary" href="/" role="button">Return Home</a>
-        </p>
+        <h1>LANDING PAGE</h1>
     </div>
 </div> <!-- /container -->
 </body>
