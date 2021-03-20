@@ -8,10 +8,4 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WebController {
 
-    @GetMapping("/")
-    public String greeting()
-    {
-        return "landing";
-    }
-
 }
