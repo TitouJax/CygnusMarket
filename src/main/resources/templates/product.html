@@ -21,8 +21,8 @@
       <img th:src="@{~/img/BigWhite.png}" height=64px width=135px class="left brand-logo hide-on-large-only" alt="Cygnus Market">
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="sass.html">Flights</a></li>
-        <li><a href="badges.html">Rocks</a></li>
-        <li><a href="collapsible.html">Miscelious</a></li>
+        <li><a href="badges.html">Fragments</a></li>
+        <li><a href="collapsible.html">Paintings</a></li>
         <li>
           <div class="row">
             <form id="search">
@@ -77,23 +77,28 @@
       <div class="product" style="margin-top: 50px;">
         <div class="row">
           <div class="col l12 xl6 m12 s12 center">
-            <img th:src="@{~/img/product/saturn/2490_hubblesaturn_320.png}" height="400px" width="400px" alt="">
+            <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" height="400px" width="450px" alt="">
           </div>
           <div class="col l12 xl6 m12 s12">
-            <div class="name">
+            <div class="name" th:text="${product.name + ' ' + product.category}">
               Saturn
             </div>
-            <div class="desc">
+            <div class="desc" th:text="${product.description}">
               Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius of about nine times that of Earth.[20][21] It only has one-eighth the average density of Earth; however, with its larger volume, Saturn is over 95 times more massive.
             </div>
             <div class="price center">
+              <span th:text="${product.price}">
               13.36€
+              </span>
+              <span>
+                €
+              </span>
             </div>
-            <div class="spec center">
-            <span class="category">
+            <div class="category center">
               Category:
-            </span>
+            <span th:text="${product.category}" style="font-weight: bold;">
               Planet
+            </span>
             </div>
             <div class="center mrg">
             <button class="btn waves-effect waves-light medium black" type="submit" name="action">
