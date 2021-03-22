@@ -1,0 +1,112 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" th:href="@{~/css/product.css}">
+  <nav>
+    <div class="nav-wrapper black">
+      <img th:src="@{~/img/BigWhite.png}" height=64px width=135px class="brand-logo hide-on-med-and-down" alt="Cygnus Market">
+      <img th:src="@{~/img/BigWhite.png}" height=64px width=135px class="left brand-logo hide-on-large-only" alt="Cygnus Market">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Flights</a></li>
+        <li><a href="badges.html">Rocks</a></li>
+        <li><a href="collapsible.html">Miscelious</a></li>
+        <li>
+          <div class="row">
+            <form id="search">
+              <div class="col s8">
+                <div class="row" id="topbarsearch">
+                  <div class="input-field col s6 s12 red-text">
+                    <input type="text" placeholder="Search" id="autocomplete-input" class="center black-text white">
+                  </div>
+                </div>
+              </div>
+              <div class="col s2">
+                <a href="javascript:{}" onclick="document.getElementById('search').submit();">
+                  <i class="white-text material-icons prefix right">search</i></a>
+              </div>
+            </form>
+            <div class="col s2">
+              <a href="test.html"><i class="white-text material-icons prefix right">shopping_cart</i></a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul id="nav-mobile" class="right hide-on-large-only">
+        <li>
+          <div class="row">
+            <form id="search">
+              <div class="col s8">
+                <div class="row" id="topbarsearch">
+                  <div class="input-field col s6 s12 red-text">
+                    <input type="text" placeholder="Search" id="autocomplete-input" class="center black-text white">
+                  </div>
+                </div>
+              </div>
+              <div class="col s2">
+                <a href="javascript:{}" onclick="document.getElementById('search').submit();">
+                  <i class="white-text material-icons prefix right">search</i></a>
+              </div>
+            </form>
+        </li>
+        <li>
+          <div class="col s2">
+            <a href="test.html"><i class="white-text material-icons prefix center">shopping_cart</i></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <div class="product" style="margin-top: 50px;">
+        <div class="row">
+          <div class="col l12 xl6 m12 s12 center">
+            <img th:src="@{~/img/product/saturn/2490_hubblesaturn_320.png}" height="400px" width="400px" alt="">
+          </div>
+          <div class="col l12 xl6 m12 s12">
+            <div class="name">
+              Saturn
+            </div>
+            <div class="desc">
+              Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius of about nine times that of Earth.[20][21] It only has one-eighth the average density of Earth; however, with its larger volume, Saturn is over 95 times more massive.
+            </div>
+            <div class="price center">
+              13.36€
+            </div>
+            <div class="spec center">
+            <span class="category">
+              Category:
+            </span>
+              Planet
+            </div>
+            <div class="center mrg">
+            <button class="btn waves-effect waves-light medium black" type="submit" name="action">
+              Add To Basket
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="page-footer black text-center">
+  </footer>
+</body>
+
+</html>

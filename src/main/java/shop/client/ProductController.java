@@ -13,13 +13,23 @@ import java.util.Map;
 public class ProductController {
     List<Product> productList = new ArrayList<Product>();
     @GetMapping("/")
-    public ModelAndView getList() {
-        String viewname = "landing";
-        Map<String, Object> model = new HashMap<String, Object>();
-        productList.clear();
-        productList.add(new Product());
-        productList.add(new Product(1,"Test1", "Ship", 1, 2));
-        model.put("productList", productList);
-        return new ModelAndView(viewname, model);
+    public String l()
+    {
+        return "landing";
+    }
+    @GetMapping("/product/saturn")
+    public String s()
+    {
+        return "product";
+    }
+    @GetMapping("/search")
+    public String u()
+    {
+        return "search";
+    }
+    @GetMapping("/checkout")
+    public String v()
+    {
+        return "checkout";
     }
 }
