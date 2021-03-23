@@ -12,6 +12,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Product findByNameIgnoreCaseAndCategoryIgnoreCase(String name, String category);
 
+    List<Product> findByCategoryIgnoreCase(String category);
+
+    List<Product> findAllByOrderByCategory();
+
     @Override
     <S extends Product> List<S> saveAll(Iterable<S> iterable);
+
 }

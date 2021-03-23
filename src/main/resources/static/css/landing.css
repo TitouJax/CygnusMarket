@@ -1,0 +1,68 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+.page-footer {
+    height: 60px;
+}
+
+.product {
+    font-weight: bold;
+}
+
+.name {
+    text-align: center;
+    font-size: 45px;
+    margin: 15px;
+    margin-top: 0px;
+}
+.desc {
+    font-weight: normal;
+}
+.category {
+    font-weight: normal;
+}
+.price {
+    font-weight: bold;
+    font-size: 50px;
+}
+.mrg {
+    margin: 15px;
+}
+.message {
+    font-weight: bold;
+    position: absolute;
+    font-size: 80px;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    transform: translateY(50%)
+}
+.bar {
+    position: relative;
+    width: 100%;
+    background-color: black;
+    margin-top: -50px;
+    height: 50px;
+}
+.cat {
+    font-size: 80px;
+    font-weight: bold;
+    margin: 50px;
+}
+.nameProduct {
+    font-size: 25px;
+}
+.priceProduct {
+    font-size: 20px;
+    margin: 5px;
+}
+
+a {
+    color:black;
+}
