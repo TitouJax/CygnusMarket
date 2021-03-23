@@ -7,6 +7,7 @@ import javax.persistence.Id;
 @Entity
 public class Product {
     @Id
+    private Integer id;
     private String name;
     @Column(length = 2500)
     private String description;
@@ -15,13 +16,15 @@ public class Product {
     private float rating;
 
     public Product() {
+        this.id = 0;
         this.name = "";
         this.description = "";
         this.category = "";
         this.price = 0;
         this.rating = 0;
     }
-    public Product(String name, String description, String category, float price, float rating) {
+    public Product(int id, String name, String description, String category, float price, float rating) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;

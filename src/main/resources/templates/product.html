@@ -80,7 +80,7 @@
             <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" height="400px" width="450px" alt="">
           </div>
           <div class="col l12 xl6 m12 s12">
-            <div class="name" th:text="${product.name + ' ' + product.category}">
+            <div class="name" th:text="${product.name + ' ' + product.category}" style="font-size: 45px;">
               Saturn
             </div>
             <div class="desc" th:text="${product.description}">
