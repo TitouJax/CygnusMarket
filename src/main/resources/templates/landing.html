@@ -24,7 +24,7 @@
         <img th:src="@{~/img/logo.png}" height=64px width=135px class="left brand-logo hide-on-large-only" alt="Cygnus Market">
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li th:each="PC : ${ProductsCategories}"><a th:text="${PC.category + 's'}" href="sass.html">Flights</a></li>
+          <li th:each="PC : ${ProductsCategories}"><a th:text="${PC.category + 's'}" th:href="${'/search/?keyword='+PC.category}">Flights</a></li>
           <li>
             <div class="row">
               <form id="search">
@@ -78,7 +78,7 @@
   <span class="line-1 anim-typewriter message white-text">
     The Future Is Now
   </span>
-  <video th:src="@{~/video/landing.mp4}" id="bgvideo" width="100%" height="100%" autoplay loop muted>
+  <video th:src="@{~/video/landing2.mp4}" id="bgvideo" width="100%" height="100%" autoplay loop muted>
   </video>
   <div class="bar"></div>
   <div class="containter">

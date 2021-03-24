@@ -88,12 +88,21 @@ public class ProductController {
         model.addAttribute("categories", getAllCategories());
         model.addAttribute("number", products.size());
         model.addAttribute("keyword", keyword);
+        if (products.size() == 0)
+        {
+            model.addAttribute("msg","product.");
+        }
+        else
+        {
+            model.addAttribute("msg", "products:");
+        }
         return "search";
     }
     @GetMapping("/product/{category}/{name}")
     public String productPage(@PathVariable("name") String name, @PathVariable("category") String category, Model model) {
         Product product = productRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
         model.addAttribute("product", product);
+        model.addAttribute("categories", getAllCategories());
         return "product";
     }
 }

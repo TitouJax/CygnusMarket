@@ -6,6 +6,7 @@
   <meta charset="utf-8">
 
   <title th:text="${'Results for ' + keyword}">Search</title>
+  <link rel="icon" th:href="@{~/img/icon.png}"/>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 
@@ -17,17 +18,19 @@
   <link rel="stylesheet" th:href="@{~/css/search.css}">
   <nav>
     <div class="nav-wrapper black">
-      <img th:src="@{~/img/BigWhite.png}" height=64px width=135px class="brand-logo hide-on-med-and-down" alt="Cygnus Market">
-      <img th:src="@{~/img/BigWhite.png}" height=64px width=135px class="left brand-logo hide-on-large-only" alt="Cygnus Market">
+      <a href="/">
+      <img th:src="@{~/img/logo.png}" height=64px width=135px class="brand-logo hide-on-med-and-down" alt="Cygnus Market">
+      <img th:src="@{~/img/logo.png}" height=64px width=135px class="left brand-logo hide-on-large-only" alt="Cygnus Market">
+      </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li th:each="category : ${categories}"><a th:href="${'/search/?keyword=' + category}" th:text="${category + 's'}">Flights</a></li>
         <li>
           <div class="row">
-            <form id="search">
+            <form th:action="@{'/search/'}" method="get" id="search">
               <div class="col s8">
                 <div class="row" id="topbarsearch">
                   <div class="input-field col s6 s12 red-text">
-                    <input type="text" placeholder="Search" id="autocomplete-input" class="center black-text white">
+                    <input th:value="${keyword}" type="text" placeholder="Search" id="txtSearch" name="keyword" class="center black-text white">
                   </div>
                 </div>
               </div>
@@ -74,14 +77,14 @@
     <div class="container">
       <div class="center">
         <h3>
-          Your search for "<span th:text="${keyword}">search</span>" returns <span th:text="${number}">10</span> results.
+          Your search for "<span th:text="${keyword}">search</span>" returns <span th:text="${number}">10</span><span th:text="${' ' + msg}"></span>
         </h3>
       </div>
       <div th:each="product : ${products}" class="product" style="margin-top: 50px;">
         <a th:href="${'/product/' + product.category + '/' + product.name}" style="color: black;">
         <div class="row valign-wrapper">
           <div class="col s6 center valign-wrapper thumbnail">
-            <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" height="200px" width="200px" alt="">
+            <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" height="200px" width="280px" alt="">
           </div>
           <div class="col s6">
             <div th:text="${product.name + ' ' + product.category}" class="name">
