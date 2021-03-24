@@ -19,4 +19,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Override
     <S extends Product> List<S> saveAll(Iterable<S> iterable);
 
+
 }

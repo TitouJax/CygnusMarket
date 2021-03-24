@@ -6,8 +6,10 @@
   <meta charset="utf-8">
 
   <title>Cygnus Market</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
+  <link rel="icon" th:href="@{~/img/icon.png}"/>
+
+  <meta name="description" content="Landing page of Cygnus Market">
+  <meta name="author" content="Cygnus Market Admin">
 
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -89,12 +91,12 @@
           <div th:each="product: ${PC.product}" class="produit col xl4 l4 m6 s6 center">
             <div class="product">
               <div class="imageProduct">
-                <a th:href="${'/product/' + product.category}">
+                <a th:href="${'/product/' + product.category + '/' + product.name}">
                   <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" width="360px" height="280px">
                 </a>
               </div>
               <div class="nameProduct center">
-                <a th:text="${product.name + ' ' + product.category}" th:href="${'/product/' + product.category}">
+                <a th:text="${product.name + ' ' + product.category}" th:href="${'/product/' + product.category + '/' + product.name}">
                   Product Title
                 </a>
               </div>

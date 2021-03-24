@@ -1,8 +1,6 @@
 package shop.client;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -12,19 +10,17 @@ public class Product {
     @Column(length = 2500)
     private String description;
     private String category;
-    private float price;
+    private double price;
     private float rating;
 
     public Product() {
-        this.id = 0;
         this.name = "";
         this.description = "";
         this.category = "";
         this.price = 0;
         this.rating = 0;
     }
-    public Product(int id, String name, String description, String category, float price, float rating) {
-        this.id = id;
+    public Product(String name, String category, double price, float rating, String description) {
         this.name = name;
         this.description = description;
         this.category = category;
@@ -32,6 +28,13 @@ public class Product {
         this.rating = rating;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() { return name; }
 
@@ -39,7 +42,7 @@ public class Product {
 
     public String getDescription() { return description; }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
