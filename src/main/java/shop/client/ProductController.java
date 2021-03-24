@@ -19,6 +19,7 @@ import java.util.Optional;
 @RequestMapping("/")
 public class ProductController {
     public final ProductRepository productRepository;
+    Basket basket = new Basket();
     @Autowired
     public ProductController(ProductRepository productRepository)
     {
@@ -64,12 +65,6 @@ public class ProductController {
     @GetMapping("/")
     public String landingPage(Model model)
     {
-/*        List<Product> flights = productRepository.findByCategoryIgnoreCase("Flight");
-        List<Product> fragments = productRepository.findByCategoryIgnoreCase("Fragment");
-        List<Product> paintings = productRepository.findByCategoryIgnoreCase("Painting");
-        model.addAttribute("flights", flights);
-        model.addAttribute("fragments", fragments);
-        model.addAttribute("paintings", paintings);*/
         ProductController p = new ProductController(productRepository);
         List<String> categories = p.getAllCategories();
         List<ProductCategory> products = new ArrayList<>();
@@ -78,6 +73,7 @@ public class ProductController {
             products.add(new ProductCategory(productRepository.findByCategoryIgnoreCase(categories.get(i)), categories.get(i)));
         }
         model.addAttribute("ProductsCategories", products);
+        model.addAttribute("basket", basket);
         return "landing";
     }
 
@@ -98,11 +94,20 @@ public class ProductController {
         }
         return "search";
     }
+    @GetMapping("/checkout/")
+    public String checkoutPage(@RequestParam(required=false) String id, Model model)
+    {
+        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("basket", basket.getBasketItems());
+        return "checkout";
+    }
+
     @GetMapping("/product/{category}/{name}")
     public String productPage(@PathVariable("name") String name, @PathVariable("category") String category, Model model) {
         Product product = productRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
         model.addAttribute("product", product);
         model.addAttribute("categories", getAllCategories());
+        model.addAttribute("basket", basket);
         return "product";
     }
 }

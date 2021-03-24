@@ -102,9 +102,9 @@
             </span>
             </div>
             <div class="center mrg">
-            <button class="btn waves-effect waves-light medium black" type="submit" name="action">
-              Add To Basket
-            </button>
+              <button th:onclick="${basket.addItem(product, 1)}" class="btn waves-effect waves-light medium black" type="submit" name="action">
+                Add To Basket
+              </button>
             </div>
           </div>
         </div>

@@ -36,10 +36,18 @@ main {
     margin: 15px;
 }
 .product {
-    border: solid;
     margin-top: 50px;
     margin-bottom: 50px;
 }
 .thumbnail {
     margin-left: 50px !important;
+}
+.division {
+    width: 87%;
+    height: 10px;
+    margin: auto;
+    background-color: black;
+}
+.txtMrg {
+    margin-bottom: 50px;
 }

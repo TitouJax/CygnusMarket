@@ -75,16 +75,17 @@
 <body>
   <main>
     <div class="container">
-      <div class="center">
+      <div class="center txtMrg">
         <h3>
           Your search for "<span th:text="${keyword}">search</span>" returns <span th:text="${number}">10</span><span th:text="${' ' + msg}"></span>
         </h3>
       </div>
+      <div class="division center"></div>
       <div th:each="product : ${products}" class="product" style="margin-top: 50px;">
         <a th:href="${'/product/' + product.category + '/' + product.name}" style="color: black;">
         <div class="row valign-wrapper">
           <div class="col s6 center valign-wrapper thumbnail">
-            <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" height="200px" width="280px" alt="">
+            <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" height="250px" width="290px" alt="">
           </div>
           <div class="col s6">
             <div th:text="${product.name + ' ' + product.category}" class="name">
@@ -106,6 +107,7 @@
           </div>
         </div>
         </a>
+        <div class="division center"></div>
       </div>
     </div>
   </main>

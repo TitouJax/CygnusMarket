@@ -17,7 +17,7 @@ main {
 
 .name {
     text-align: center;
-    font-size: 80px;
+    font-size: 45px;
     margin: 15px;
     margin-top: 0px;
 }
@@ -29,7 +29,7 @@ main {
 }
 .price {
     font-weight: bold;
-    font-size: 50px;
+    font-size: 35px;
 }
 .mrg {
     margin: 15px;
@@ -43,5 +43,9 @@ main {
     margin-left: 50px !important;
 }
 .checkout {
+    font-weight: bold;
+}
+.quantity {
+    font-size: 30px;
     font-weight: bold;
 }

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
+  <title>Checkout</title>
   <link rel="icon" th:href="@{~/img/icon.png}"/>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
@@ -18,17 +18,19 @@
   <link rel="stylesheet" th:href="@{~/css/checkout.css}">
   <nav>
     <div class="nav-wrapper black">
-      <img th:src="@{~/img/BigWhite.png}" height=64px width=135px class="brand-logo hide-on-med-and-down" alt="Cygnus Market">
-      <img th:src="@{~/img/BigWhite.png}" height=64px width=135px class="left brand-logo hide-on-large-only" alt="Cygnus Market">
+      <a href="/">
+        <img th:src="@{~/img/logo.png}" height=64px width=135px class="brand-logo hide-on-med-and-down" alt="Cygnus Market">
+        <img th:src="@{~/img/logo.png}" height=64px width=135px class="left brand-logo hide-on-large-only" alt="Cygnus Market">
+      </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li th:each="category : ${categories}"><a th:href="${'/search/?keyword=' + category}" th:text="${category + 's'}">Flights</a></li>
         <li>
           <div class="row">
-            <form id="search">
+            <form th:action="@{'/search/'}" method="get" id="search">
               <div class="col s8">
                 <div class="row" id="topbarsearch">
                   <div class="input-field col s6 s12 red-text">
-                    <input type="text" placeholder="Search" id="autocomplete-input" class="center black-text white">
+                    <input th:value="${keyword}" type="text" placeholder="Search" id="txtSearch" name="keyword" class="center black-text white">
                   </div>
                 </div>
               </div>
@@ -78,19 +80,22 @@
                 Your Basket
             </h3>
         </div>
-      <div class="product" style="margin-top: 50px;">
+      <div th:each="basketItem : ${basket}"{class="product" style="margin-top: 50px;">
         <div class="row valign-wrapper">
           <div class="col s6 valign-wrapper thumbnail">
-            <img th:src="@{~/img/product/saturn/2490_hubblesaturn_320.png}" height="200px" width="200px" alt="">
+            <img th:src="@{${'~/img/product/' + basketItem.getProduct().getCategory() + '/' + basketItem.getProduct().getName() + '.PNG'}}" height="200px" width="200px" alt="">
           </div>
           <div class="col s6">
-            <div class="name">
+            <div th:text="${basketItem.getProduct().getName()}" class="name">
               Saturn
             </div>
             <div class="price center">
-              13.36€
+              <span th:text="${#numbers.formatDecimal(basketItem.getProduct().getPrice(), 1, 'DEFAULT', 2, 'DEFAULT')}"></span>
+              <span>€</span>
             </div>
-            <div class="center mrg">
+            <div class="quantity center mrg">
+              <span style="font-weight: normal;">x</span>
+              <span th:text="${basketItem.getQuantity()}"></span>
             </div>
           </div>
         </div>
