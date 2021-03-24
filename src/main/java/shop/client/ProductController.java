@@ -7,11 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Id;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +19,6 @@ import java.util.Optional;
 @RequestMapping("/")
 public class ProductController {
     public final ProductRepository productRepository;
-    private boolean generated = false;
     @Autowired
     public ProductController(ProductRepository productRepository)
     {
@@ -37,12 +35,12 @@ public class ProductController {
         products.add(new Product("Mars", "Fragment", 89.99, 5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
 
             // Flights
-        products.add(new Product("Earth", "Flight", 250000.95, 5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
-        products.add(new Product("Moon", "Flight", 1250000.95, 5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
-        products.add(new Product("Moon", "Flight", 1250000.95, 5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
-        products.add(new Product("Mars", "Flight", 80000000.95,5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
+        products.add(new Product("Earth", "Flight", 250000, 5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
+        products.add(new Product("Moon", "Flight", 1250000, 5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
+        products.add(new Product("Saturn", "Flight", 10850000, 5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
+        products.add(new Product("Mars", "Flight", 80000000,5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
 
-        products.add(new Product("Mars", "Planet", 250000.95, 5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
+        products.add(new Product("Mars", "Planet", 250000, 5, "A meteorite is a solid piece of debris from an object, such as a comet, asteroid, or meteoroid, that originates in outer space and survives its passage through the atmosphere to reach the surface of a planet or moon."));
 
         for(int i = 0; i < products.size(); i++)
         {
@@ -83,8 +81,13 @@ public class ProductController {
         return "landing";
     }
 
-    @GetMapping("/search")
-    public String searchPage() {
+    @RequestMapping("/search/")
+    public String searchPage(@RequestParam String keyword, Model model) {
+        List<Product> products = productRepository.findByCategoryIgnoreCaseOrNameIgnoreCase(keyword, keyword);
+        model.addAttribute("products", products);
+        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("number", products.size());
+        model.addAttribute("keyword", keyword);
         return "search";
     }
     @GetMapping("/product/{category}/{name}")

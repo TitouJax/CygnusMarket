@@ -101,7 +101,7 @@
                 </a>
               </div>
               <div class="priceProduct center">
-                <span th:text="${product.price}">19.00</span>
+                <span th:text="${#numbers.formatDecimal(product.price, 1, 'DEFAULT', 2, 'DEFAULT')}">19.00</span>
                 <span>€</span>
               </div>
               <button class="btn waves-effect waves-light medium black" type="submit" name="action">

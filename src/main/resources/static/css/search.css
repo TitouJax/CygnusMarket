@@ -17,19 +17,20 @@ main {
 
 .name {
     text-align: center;
-    font-size: 80px;
+    font-size: 40px;
     margin: 15px;
     margin-top: 0px;
 }
 .desc {
     font-weight: normal;
 }
-.category {
-    font-weight: normal;
-}
 .price {
     font-weight: bold;
-    font-size: 50px;
+    font-size: 30px;
+}
+.category {
+        font-weight: bold;
+        font-size: 15px;
 }
 .mrg {
     margin: 15px;

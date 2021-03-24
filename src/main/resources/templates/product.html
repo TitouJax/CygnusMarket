@@ -25,11 +25,11 @@
         <li><a href="collapsible.html">Paintings</a></li>
         <li>
           <div class="row">
-            <form id="search">
+            <form th:action="@{'/search/'}" method="get" id="search">
               <div class="col s8">
                 <div class="row" id="topbarsearch">
                   <div class="input-field col s6 s12 red-text">
-                    <input type="text" placeholder="Search" id="autocomplete-input" class="center black-text white">
+                    <input th:value="${keyword}" type="text" placeholder="Search" id="txtSearch" name="keyword" class="center black-text white">
                   </div>
                 </div>
               </div>
@@ -87,7 +87,7 @@
               Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius of about nine times that of Earth.[20][21] It only has one-eighth the average density of Earth; however, with its larger volume, Saturn is over 95 times more massive.
             </div>
             <div class="price center">
-              <span th:text="${product.price}">
+              <span th:text="${#numbers.formatDecimal(product.price, 1, 'DEFAULT', 2, 'DEFAULT')}">
               13.36€
               </span>
               <span>

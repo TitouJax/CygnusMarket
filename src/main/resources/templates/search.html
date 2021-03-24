@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
+  <title th:text="${'Results for ' + keyword}">Search</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 
@@ -20,9 +20,7 @@
       <img th:src="@{~/img/BigWhite.png}" height=64px width=135px class="brand-logo hide-on-med-and-down" alt="Cygnus Market">
       <img th:src="@{~/img/BigWhite.png}" height=64px width=135px class="left brand-logo hide-on-large-only" alt="Cygnus Market">
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Flights</a></li>
-        <li><a href="badges.html">Fragments</a></li>
-        <li><a href="collapsible.html">Paintings</a></li>
+        <li th:each="category : ${categories}"><a th:href="${'/search/?keyword=' + category}" th:text="${category + 's'}">Flights</a></li>
         <li>
           <div class="row">
             <form id="search">
@@ -76,21 +74,26 @@
     <div class="container">
       <div class="center">
         <h3>
-          Your search for "<span>azefzfe</span>" returns <span>8</span> resutls.
+          Your search for "<span th:text="${keyword}">search</span>" returns <span th:text="${number}">10</span> results.
         </h3>
       </div>
-      <div class="product" style="margin-top: 50px;">
+      <div th:each="product : ${products}" class="product" style="margin-top: 50px;">
+        <a th:href="${'/product/' + product.category + '/' + product.name}" style="color: black;">
         <div class="row valign-wrapper">
           <div class="col s6 center valign-wrapper thumbnail">
-            <img th:src="@{~/img/product/saturn/2490_hubblesaturn_320.png}" height="200px" width="200px" alt="">
+            <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" height="200px" width="200px" alt="">
           </div>
           <div class="col s6">
-            <div class="name">
+            <div th:text="${product.name + ' ' + product.category}" class="name">
               Saturn
             </div>
-            
             <div class="price center">
-              13.36€
+              <span th:text="${#numbers.formatDecimal(product.price, 1, 'DEFAULT', 2, 'DEFAULT')}"></span>
+              <span>€</span>
+            </div>
+            <div class="category center">
+              <span style="font-weight: normal;">Category:</span>
+              <span th:text="${product.category}"></span>
             </div>
             <div class="center mrg">
             <button class="btn waves-effect waves-light medium black" type="submit" name="action">
@@ -99,6 +102,7 @@
             </div>
           </div>
         </div>
+        </a>
       </div>
     </div>
   </main>
