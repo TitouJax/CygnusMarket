@@ -1,5 +1,7 @@
 package shop.client;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,7 @@ import java.util.Optional;
 
 @Controller
 public class ProductController {
+    Logger logger = LoggerFactory.getLogger("logger");
     public final Basket basket = new Basket();
     public final ProductRepository productRepository;
     @Autowired
@@ -40,6 +43,7 @@ public class ProductController {
 
     @RequestMapping("/search/")
     public String searchPage(@RequestParam String keyword, Model model) {
+        logger.info("Search page loaded");
         List<Product> products = productRepository.findByCategoryIgnoreCaseOrNameIgnoreCase(keyword, keyword);
         model.addAttribute("products", products);
         model.addAttribute("categories", getAllCategories());
@@ -60,15 +64,24 @@ public class ProductController {
     @GetMapping("/checkout/")
     public String checkoutPage(@RequestParam(required=false) String id, Model model)
     {
+        logger.info("Checkout loaded");
         model.addAttribute("categories", getAllCategories());
         model.addAttribute("basket", basket.getBasketItems());
         model.addAttribute("globalBasket", basket);
         model.addAttribute("message", (basket.getBasketItems().size() == 0) ? "Your basket is empty." : "Your basket:");
+        logger.info("Baskets is containing " + basket.getBasketItems().size() + " items :");
+        for (int i = 0; i < basket.getBasketItems().size(); i++)
+        {
+            Product p = basket.getBasketItems().get(i).getProduct();
+            logger.info("Product: " + p.getName() + " " + p.getCategory() + ", quantity: "
+                    + basket.getBasketItems().get(i).getQuantity());
+        }
         return "checkout";
     }
 
     @GetMapping("/product/{category}/{name}")
     public String productPage(@PathVariable("name") String name, @PathVariable("category") String category, Model model) {
+        logger.info("Product page " + name + " " + category);
         Product product = productRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
         model.addAttribute("product", product);
         model.addAttribute("categories", getAllCategories());
@@ -90,6 +103,7 @@ public class ProductController {
     @GetMapping("/product/{category}/{name}/buy")
     public String buy(@PathVariable("name") String name, @PathVariable("category") String category, Model model)
     {
+        logger.info("Bought " + name + " " + category);
         Product product = productRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
         model.addAttribute("product", product);
         model.addAttribute("categories", getAllCategories());
@@ -111,6 +125,7 @@ public class ProductController {
     @GetMapping("/")
     public String landingPage(Model model)
     {
+        logger.info("Landing page loaded");
         List<ProductCategory> products = new ArrayList<>();
         List<String> categories = getAllCategories();
         int index = 0;
