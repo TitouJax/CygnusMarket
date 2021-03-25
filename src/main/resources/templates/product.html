@@ -102,11 +102,22 @@
               </a>
             </div>
             <div class="center mrg">
-              <button th:onclick="${basket.addItem(product, 1)}" class="btn waves-effect waves-light medium black" type="submit" name="action">
+              <button id="bt" onclick="" class="btn waves-effect waves-light medium black" type="submit" name="action">
                 Add To Basket
               </button>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div th:text="${msg}" class="also center">You may also be interested by:</div>
+        <div th:each="product : ${allExc}" class="col s4 center">
+          <a th:href="${'/product/' + product.category + '/' + product.name}">
+          <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" class="center" height="150px" width="180px">
+          <div th:text="${product.name + ' ' + product.category}" class="center nm" style="color: black;">
+            name
+          </div>
+          </a>
         </div>
       </div>
     </div>

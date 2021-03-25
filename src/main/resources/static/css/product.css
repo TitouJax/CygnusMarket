@@ -35,3 +35,8 @@ main {
 .mrg {
     margin: 15px;
 }
+.also {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 40px;
+}

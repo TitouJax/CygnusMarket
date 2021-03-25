@@ -1,7 +1,9 @@
 package shop.client;
 
+import java.applet.Applet;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Basket {
     private List<BasketItem> basketItems;
@@ -24,7 +26,6 @@ public class Basket {
     }
 
     public boolean addItem(Product product, int quantity) {
-        System.out.print("WWWWWWWW");
         for(int i = 0; i < basketItems.size(); i++) {
             if (product.getId() == basketItems.get(i).getProduct().getId())
             {

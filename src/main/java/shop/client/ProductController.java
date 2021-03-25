@@ -63,7 +63,7 @@ public class ProductController {
         model.addAttribute("categories", getAllCategories());
         model.addAttribute("basket", basket.getBasketItems());
         model.addAttribute("globalBasket", basket);
-        model.addAttribute("message", (basket.getBasketItems().size() == 0) ? "Your basket is empty." : "Your basket :");
+        model.addAttribute("message", (basket.getBasketItems().size() == 0) ? "Your basket is empty." : "Your basket:");
         return "checkout";
     }
 
@@ -73,6 +73,16 @@ public class ProductController {
         model.addAttribute("product", product);
         model.addAttribute("categories", getAllCategories());
         model.addAttribute("basket", basket);
+        List<Product> allByCat = productRepository.findByCategoryIgnoreCase(category);
+        for (int i = 0; i < allByCat.size(); i++)
+        {
+            if (allByCat.get(i).getName().equals(name))
+            {
+                allByCat.remove(i);
+            }
+        }
+        model.addAttribute("msg", (allByCat.size() == 0) ? "" : "You may also be interested by:");
+        model.addAttribute("allExc", allByCat);
         return "product";
     }
 
