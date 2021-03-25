@@ -5,31 +5,28 @@ import javax.persistence.*;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     private String name;
     @Column(length = 2500)
     private String description;
     private String category;
     private double price;
-    private float rating;
 
     public Product() {
         this.name = "";
         this.description = "";
         this.category = "";
         this.price = 0;
-        this.rating = 0;
     }
-    public Product(String name, String category, double price, float rating, String description) {
+    public Product(int id, String name, String category, double price, String description) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;
         this.price = price;
-        this.rating = rating;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -45,10 +42,6 @@ public class Product {
 
     public double getPrice() {
         return price;
-    }
-
-    public float getRating() {
-        return rating;
     }
 
 
