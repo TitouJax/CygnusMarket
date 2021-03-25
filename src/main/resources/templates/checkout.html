@@ -22,7 +22,7 @@
         <img th:src="@{~/img/logo.png}" height=64px width=135px class="brand-logo hide-on-med-and-down" alt="Cygnus Market">
         <img th:src="@{~/img/logo.png}" height=64px width=135px class="left brand-logo hide-on-large-only" alt="Cygnus Market">
       </a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <ul id="nav-mobile" class="right">
         <li th:each="category : ${categories}"><a th:href="${'/search/?keyword=' + category}" th:text="${category + 's'}">Flights</a></li>
         <li>
           <div class="row">
@@ -42,29 +42,6 @@
             <div class="col s2">
               <a th:href="${'/checkout/'}"><i class="white-text material-icons prefix right">shopping_cart</i></a>
             </div>
-          </div>
-        </li>
-      </ul>
-      <ul id="nav-mobile" class="right hide-on-large-only">
-        <li>
-          <div class="row">
-            <form id="search">
-              <div class="col s8">
-                <div class="row" id="topbarsearch">
-                  <div class="input-field col s6 s12 red-text">
-                    <input type="text" placeholder="Search" id="autocomplete-input" class="center black-text white">
-                  </div>
-                </div>
-              </div>
-              <div class="col s2">
-                <a href="javascript:{}" onclick="document.getElementById('search').submit();">
-                  <i class="white-text material-icons prefix right">search</i></a>
-              </div>
-            </form>
-        </li>
-        <li>
-          <div class="col s2">
-            <a th:href="${'/checkout/'}"><i class="white-text material-icons prefix center">shopping_cart</i></a>
           </div>
         </li>
       </ul>

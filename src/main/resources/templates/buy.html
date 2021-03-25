@@ -52,7 +52,13 @@
 <body>
   <main>
     <div class="container">
-      <div class="product" style="margin-top: 50px;">
+      <script>
+        Materialize.toast('I am a toast!', 4000)
+      </script>
+      <div class="center mrg">
+      <a th:text="${'Successfuly added ' + product.name + ' ' + product.category + ' to basket'}" class="center btn" onclick="Materialize.toast('I am a toast', 4000)">Toast!</a>
+    </div>
+    <div class="product" style="margin-top: 50px;">
         <div class="row">
           <div class="col l12 xl6 m12 s12 center">
             <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" height="400px" width="450px" alt="">
@@ -79,11 +85,9 @@
               </a>
             </div>
             <div class="center mrg">
-              <a th:href="@{${'/product/' + product.category + '/' + product.name + '/buy'}}">
-              <button id="bt" onclick="" class="btn waves-effect waves-light medium black" type="submit" name="action">
+              <button th:onclick="${basket.addItem(product, 1)}" id="bt" onclick="" class="btn waves-effect waves-light medium black" type="submit" name="action">
                 Add To Basket
               </button>
-              </a>
             </div>
           </div>
         </div>

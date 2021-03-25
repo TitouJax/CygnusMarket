@@ -73,6 +73,7 @@ public class ProductController {
         model.addAttribute("product", product);
         model.addAttribute("categories", getAllCategories());
         model.addAttribute("basket", basket);
+        model.addAttribute("buy", "basket.addItem(product, 1)");
         List<Product> allByCat = productRepository.findByCategoryIgnoreCase(category);
         for (int i = 0; i < allByCat.size(); i++)
         {
@@ -84,6 +85,27 @@ public class ProductController {
         model.addAttribute("msg", (allByCat.size() == 0) ? "" : "You may also be interested by:");
         model.addAttribute("allExc", allByCat);
         return "product";
+    }
+
+    @GetMapping("/product/{category}/{name}/buy")
+    public String buy(@PathVariable("name") String name, @PathVariable("category") String category, Model model)
+    {
+        Product product = productRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
+        model.addAttribute("product", product);
+        model.addAttribute("categories", getAllCategories());
+        model.addAttribute("basket", basket);
+        model.addAttribute("buy", "basket.addItem(product, 1)");
+        List<Product> allByCat = productRepository.findByCategoryIgnoreCase(category);
+        for (int i = 0; i < allByCat.size(); i++)
+        {
+            if (allByCat.get(i).getName().equals(name))
+            {
+                allByCat.remove(i);
+            }
+        }
+        model.addAttribute("msg", (allByCat.size() == 0) ? "" : "You may also be interested in:");
+        model.addAttribute("allExc", allByCat);
+        return "buy";
     }
 
     @GetMapping("/")
