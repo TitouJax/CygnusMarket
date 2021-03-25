@@ -40,7 +40,7 @@
               </div>
             </form>
             <div class="col s2">
-              <a href="test.html"><i class="white-text material-icons prefix right">shopping_cart</i></a>
+              <a th:href="${'/checkout/'}"><i class="white-text material-icons prefix right">shopping_cart</i></a>
             </div>
           </div>
         </li>
@@ -64,7 +64,7 @@
         </li>
         <li>
           <div class="col s2">
-            <a href="test.html"><i class="white-text material-icons prefix center">shopping_cart</i></a>
+            <a th:href="${'/checkout/'}"><i class="white-text material-icons prefix center">shopping_cart</i></a>
           </div>
         </li>
       </ul>
@@ -76,17 +76,18 @@
   <main>
     <div class="container">
         <div class="center">
-            <h3>
+            <h3 th:text="${message}">
                 Your Basket
             </h3>
         </div>
+      <div class="division"></div>
       <div th:each="basketItem : ${basket}"{class="product" style="margin-top: 50px;">
         <div class="row valign-wrapper">
           <div class="col s6 valign-wrapper thumbnail">
-            <img th:src="@{${'~/img/product/' + basketItem.getProduct().getCategory() + '/' + basketItem.getProduct().getName() + '.PNG'}}" height="200px" width="200px" alt="">
+            <img th:src="@{${'~/img/product/' + basketItem.getProduct().getCategory() + '/' + basketItem.getProduct().getName() + '.PNG'}}" height="250px" width="320px" alt="">
           </div>
           <div class="col s6">
-            <div th:text="${basketItem.getProduct().getName()}" class="name">
+            <div th:text="${basketItem.getProduct().getName() + ' ' + basketItem.getProduct().getCategory()}" class="name">
               Saturn
             </div>
             <div class="price center">
@@ -99,12 +100,14 @@
             </div>
           </div>
         </div>
+        <div class="division"></div>
       </div>
       <div class="checkout">
           <div class="center">
               <h2>
                   Final checkout: 
-                  <span class="checkout">fazef</span>
+                  <span th:text="${#numbers.formatDecimal(globalBasket.getPrice(), 1, 'DEFAULT', 2, 'DEFAULT')}" class="checkout">0</span>
+                  <span>€</span>
               </h2>
           </div>
       </div>

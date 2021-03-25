@@ -24,11 +24,12 @@ public class Basket {
     }
 
     public boolean addItem(Product product, int quantity) {
+        System.out.print("WWWWWWWW");
         for(int i = 0; i < basketItems.size(); i++) {
             if (product.getId() == basketItems.get(i).getProduct().getId())
             {
                 basketItems.get(i).setQuantity(basketItems.get(i).getQuantity() + 1);
-                return false;
+                return true;
             }
         }
         basketItems.add(new BasketItem(product, quantity));

@@ -41,7 +41,7 @@
                 </div>
               </form>
               <div class="col s2">
-                <a href="test.html"><i class="white-text material-icons prefix right">shopping_cart</i></a>
+                <a th:href="${'/checkout/'}"><i class="white-text material-icons prefix right">shopping_cart</i></a>
               </div>
             </div>
           </li>
@@ -65,7 +65,7 @@
           </li>
           <li>
             <div class="col s2">
-              <a href="test.html"><i class="white-text material-icons prefix center">shopping_cart</i></a>
+              <a th:href="${'/checkout/'}"><i class="white-text material-icons prefix center">shopping_cart</i></a>
             </div>
           </li>
         </ul>
@@ -104,9 +104,11 @@
                 <span th:text="${#numbers.formatDecimal(product.price, 1, 'DEFAULT', 2, 'DEFAULT')}">19.00</span>
                 <span>€</span>
               </div>
-              <button class="btn waves-effect waves-light medium black" type="submit" name="action">
-                Add To Basket
+              <a th:href="${'/product/' + product.category + '/' + product.name}">
+              <button class="btn waves-effect waves-light medium black">
+                More Info
               </button>
+              </a>
             </div>
           </div>
           </div>

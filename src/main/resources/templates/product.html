@@ -40,7 +40,7 @@
               </div>
             </form>
             <div class="col s2">
-              <a href="test.html"><i class="white-text material-icons prefix right">shopping_cart</i></a>
+              <a th:href="${'/checkout/'}"><i class="white-text material-icons prefix right">shopping_cart</i></a>
             </div>
           </div>
         </li>
@@ -64,7 +64,7 @@
         </li>
         <li>
           <div class="col s2">
-            <a href="test.html"><i class="white-text material-icons prefix center">shopping_cart</i></a>
+            <a hth:href="${'/checkout/'}"><i class="white-text material-icons prefix center">shopping_cart</i></a>
           </div>
         </li>
       </ul>
@@ -97,9 +97,9 @@
             </div>
             <div class="category center">
               Category:
-            <span th:text="${product.category}" style="font-weight: bold;">
-              Planet
-            </span>
+              <a th:href="${'/search/?keyword=' + product.category}" style="color: black;">
+                <span th:text="${product.category}" style="font-weight: bold;"></span>
+              </a>
             </div>
             <div class="center mrg">
               <button th:onclick="${basket.addItem(product, 1)}" class="btn waves-effect waves-light medium black" type="submit" name="action">

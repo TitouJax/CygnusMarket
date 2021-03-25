@@ -49,3 +49,10 @@ main {
     font-size: 30px;
     font-weight: bold;
 }
+
+.division {
+    width: 87%;
+    height: 10px;
+    margin: auto;
+    background-color: black;
+}

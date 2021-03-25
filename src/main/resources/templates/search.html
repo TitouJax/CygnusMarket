@@ -40,7 +40,7 @@
               </div>
             </form>
             <div class="col s2">
-              <a href="test.html"><i class="white-text material-icons prefix right">shopping_cart</i></a>
+              <a th:href="${'/checkout/'}"><i class="white-text material-icons prefix right">shopping_cart</i></a>
             </div>
           </div>
         </li>
@@ -64,7 +64,7 @@
         </li>
         <li>
           <div class="col s2">
-            <a href="test.html"><i class="white-text material-icons prefix center">shopping_cart</i></a>
+            <a th:href="${'/checkout/'}"><i class="white-text material-icons prefix center">shopping_cart</i></a>
           </div>
         </li>
       </ul>
@@ -82,31 +82,37 @@
       </div>
       <div class="division center"></div>
       <div th:each="product : ${products}" class="product" style="margin-top: 50px;">
-        <a th:href="${'/product/' + product.category + '/' + product.name}" style="color: black;">
         <div class="row valign-wrapper">
           <div class="col s6 center valign-wrapper thumbnail">
+            <a th:href="${'/product/' + product.category + '/' + product.name}" style="color: black;">
             <img th:src="@{${'~/img/product/' + product.category + '/' + product.name + '.PNG'}}" height="250px" width="290px" alt="">
+            </a>
           </div>
           <div class="col s6">
+            <a th:href="${'/product/' + product.category + '/' + product.name}" style="color: black;">
             <div th:text="${product.name + ' ' + product.category}" class="name">
               Saturn
             </div>
+            </a>
             <div class="price center">
               <span th:text="${#numbers.formatDecimal(product.price, 1, 'DEFAULT', 2, 'DEFAULT')}"></span>
               <span>€</span>
             </div>
             <div class="category center">
               <span style="font-weight: normal;">Category:</span>
+              <a th:href="${'/search/?keyword=' + product.category}" style="color: black;">
               <span th:text="${product.category}"></span>
+              </a>
             </div>
             <div class="center mrg">
-            <button class="btn waves-effect waves-light medium black" type="submit" name="action">
-              Add To Basket
-            </button>
+              <a th:href="${'/product/' + product.category + '/' + product.name}">
+                <button class="btn waves-effect waves-light medium black">
+                  More Info
+                </button>
+              </a>
             </div>
           </div>
         </div>
-        </a>
         <div class="division center"></div>
       </div>
     </div>
